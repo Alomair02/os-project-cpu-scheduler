@@ -1,0 +1,11 @@
+# Compiled object files
+*.o
+
+# Main simulator executable
+scheduler
+
+# Compiled test binaries in the tests folder
+tests/test_*
+
+# macOS specific system files (optional but highly recommended)
+.DS_Store
