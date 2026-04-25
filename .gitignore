@@ -2,10 +2,18 @@
 *.o
 
 # Main simulator executable
-scheduler
+/scheduler
 
-# Compiled test binaries in the tests folder
-tests/test_*
+# Compiled test binaries
+/test_event_queue
+/test_scheduler
+/test_simulator
 
 # macOS specific system files (optional but highly recommended)
 .DS_Store
+
+# Codex workspace metadata
+.codex
+
+# Local assignment prompt copy
+/phase2.description
