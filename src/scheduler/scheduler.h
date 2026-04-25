@@ -4,9 +4,8 @@
 #include "../include/process.h"
 #include "../engine/simulator.h"
 
-/* * Core hooks called by Abdulaziz's simulation engine.
- * Feras needs to implement these to route processes to the correct 
- * algorithm (FCFS, SJF, RR, Priority) based on s->algo.
+/* Core hooks called by the simulation engine.
+ * The scheduler routes processes using s->algo and manages the ready queue.
  */
 void     sched_init(SimulatorState *s);
 void     sched_enqueue(SimulatorState *s, Process *p);
