@@ -10,6 +10,7 @@ ENGINE_SRC = src/engine/event_queue.c \
              src/engine/simulator.c
 APP_SRC = src/main.c \
           $(ENGINE_SRC) \
+          $(SCHEDULER_SRC) \
           src/io/io_handler.c \
           src/metrics/metrics.c \
           src/output/output.c \
