@@ -1,0 +1,28 @@
+# CPU Scheduler Workload File
+# Format per process:
+#   pid arrival_time priority num_cpu_bursts
+#   cpu_burst_1 io_burst_1 cpu_burst_2 io_burst_2 ... cpu_burst_N
+#
+# Rules:
+#   - num_cpu_bursts must be >= 1
+#   - num_io_bursts = num_cpu_bursts - 1
+#   - Lines starting with '#' are comments and are ignored
+#   - Blank lines are ignored
+
+# pid  arrival  priority  num_cpu_bursts
+# followed by: cpu [io cpu [io cpu ...]]
+
+1  0  2  3
+6 4 5 3 8
+
+2  2  1  2
+4 2 7
+
+3  4  3  1
+9
+
+4  6  2  4
+3 5 4 6 2 3 5
+
+5  8  1  2
+7 1 3
