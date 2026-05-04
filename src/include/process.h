@@ -23,6 +23,7 @@ typedef struct {
     int start_time;            /* first time on CPU */
     int finish_time;
     int waiting_time;
+    int last_ready_time;       /* last time inserted into ready queue */
     int response_time_set;     /* flag: 0 until first dispatch */
 } Process;
 

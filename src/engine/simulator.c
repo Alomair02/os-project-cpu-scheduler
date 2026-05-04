@@ -27,6 +27,12 @@ SimulatorState *sim_create(Process **procs, int n, Algorithm algo, int quantum) 
 static void dispatch_next(SimulatorState *s) {
     if (sched_is_empty(s)) return;
     Process *p = sched_next(s);
+
+    if (p->last_ready_time >= 0) {
+        p->waiting_time += s->current_time - p->last_ready_time;
+        p->last_ready_time = -1;
+    }
+
     p->state = STATE_RUNNING;
 
     /* record response time on first dispatch */
@@ -74,6 +80,7 @@ void sim_run(SimulatorState *s) {
 
         case EVENT_ARRIVAL:
             e.process->state = STATE_READY;
+            e.process->last_ready_time = s->current_time;
             sched_enqueue(s, e.process);
             if (cpu_free) { cpu_free = 0; dispatch_next(s); }
             break;
@@ -108,6 +115,7 @@ void sim_run(SimulatorState *s) {
         case EVENT_IO_DONE:
             e.process->current_burst_index++;
             e.process->state = STATE_READY;
+            e.process->last_ready_time = s->current_time;
             sched_enqueue(s, e.process);
             if (cpu_free) { cpu_free = 0; dispatch_next(s); }
             break;
@@ -120,6 +128,7 @@ void sim_run(SimulatorState *s) {
             p->state = STATE_READY;
             s->context_switch_count++;
             s->current_time += CONTEXT_SWITCH_OVERHEAD;
+            p->last_ready_time = s->current_time;
             sched_enqueue(s, p);
             dispatch_next(s);
             break;

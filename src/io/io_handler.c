@@ -131,6 +131,7 @@ int load_workload(const char *filepath, Process ***procs_out)
         p->start_time          = -1;
         p->finish_time         = -1;
         p->waiting_time        = 0;
+        p->last_ready_time     = -1;
         p->response_time_set   = 0;
 
         memcpy(p->cpu_bursts, cpu_bursts, sizeof(int) * num_cpu_bursts);

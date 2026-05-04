@@ -12,3 +12,6 @@
 # macOS specific system files (optional but highly recommended)
 .DS_Store
 .codex
+
+# Local assignment prompt copies
+/phase*.description
